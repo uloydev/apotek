@@ -26,6 +26,11 @@ else {
 	elseif ($_GET['module'] == 'form_obat') {
 		include "modules/obat/form.php";
 	}
+
+	// jika halaman konten yang dipilih obat-kadaluarsa, panggil file view obat kadaluarsa
+	elseif ($_GET['module'] == 'obat-kadaluarsa') {
+		include "modules/obat-kadaluarsa/view.php";
+	}
    // -----------------------------------------------------------------------------
      // jika halaman konten yang dipilih obat, panggil file view obat
 	elseif ($_GET['module'] == 'persediaan') {

@@ -38,6 +38,20 @@ if ($_SESSION['hak_akses']=='Super Admin') { ?>
   <?php
   }
 
+  // jika menu data obat dipilih, menu Data Obat Kadaluarsa aktif
+  if ($_GET["module"]=="obat-kadaluarsa") { ?>
+    <li class="active">
+      <a href="?module=obat-kadaluarsa"><i class="fa fa-folder"></i> Data Obat Kadaluarsa </a>
+      </li>
+  <?php
+  }
+  // jika tidak, menu Data Obat Kadaluarsa tidak aktif
+  else { ?>
+    <li>
+      <a href="?module=obat-kadaluarsa"><i class="fa fa-folder"></i> Data Obat Kadaluarsa </a>
+      </li>
+  <?php
+  }
 
   // jika menu data obat dipilih, menu data obat aktif
   if ($_GET["module"]=="persediaan" || $_GET["module"]=="form_obat") { ?>
