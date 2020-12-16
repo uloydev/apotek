@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Waktu pembuatan: 16 Des 2020 pada 03.30
--- Versi server: 10.4.11-MariaDB
--- Versi PHP: 7.4.2
+-- Host: localhost
+-- Generation Time: Dec 16, 2020 at 04:32 AM
+-- Server version: 10.5.8-MariaDB
+-- PHP Version: 7.4.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -25,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `is_users`
+-- Table structure for table `is_users`
 --
 
 CREATE TABLE `is_users` (
@@ -43,7 +42,7 @@ CREATE TABLE `is_users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `is_users`
+-- Dumping data for table `is_users`
 --
 
 INSERT INTO `is_users` (`id_user`, `username`, `nama_user`, `password`, `email`, `telepon`, `foto`, `hak_akses`, `status`, `created_at`, `updated_at`) VALUES
@@ -56,7 +55,7 @@ INSERT INTO `is_users` (`id_user`, `username`, `nama_user`, `password`, `email`,
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `log_obat`
+-- Table structure for table `log_obat`
 --
 
 CREATE TABLE `log_obat` (
@@ -72,7 +71,7 @@ CREATE TABLE `log_obat` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `obat`
+-- Table structure for table `obat`
 --
 
 CREATE TABLE `obat` (
@@ -85,7 +84,7 @@ CREATE TABLE `obat` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `obat`
+-- Dumping data for table `obat`
 --
 
 INSERT INTO `obat` (`kode_obat`, `nama_obat`, `bentuk_obat`, `tgl_produksi`, `tgl_kadaluarsa`, `harga_satuan`) VALUES
@@ -96,7 +95,7 @@ INSERT INTO `obat` (`kode_obat`, `nama_obat`, `bentuk_obat`, `tgl_produksi`, `tg
 ('TBALD1723', 'AMLODIPINE', 'TABLET', '2017-02-02', '2023-01-31', 51000);
 
 --
--- Trigger `obat`
+-- Triggers `obat`
 --
 DELIMITER $$
 CREATE TRIGGER `setelah_update_obat` AFTER UPDATE ON `obat` FOR EACH ROW BEGIN
@@ -114,7 +113,18 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `penjualan`
+-- Table structure for table `obat_kadaluarsa`
+--
+
+CREATE TABLE `obat_kadaluarsa` (
+  `id` int(11) NOT NULL,
+  `kode_obat` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `penjualan`
 --
 
 CREATE TABLE `penjualan` (
@@ -124,7 +134,7 @@ CREATE TABLE `penjualan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Trigger `penjualan`
+-- Triggers `penjualan`
 --
 DELIMITER $$
 CREATE TRIGGER `update_stok` AFTER INSERT ON `penjualan` FOR EACH ROW BEGIN
@@ -137,8 +147,8 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Stand-in struktur untuk tampilan `penjualan_februari`
--- (Lihat di bawah untuk tampilan aktual)
+-- Stand-in structure for view `penjualan_februari`
+-- (See below for the actual view)
 --
 CREATE TABLE `penjualan_februari` (
 `kode_obat` varchar(10)
@@ -152,8 +162,8 @@ CREATE TABLE `penjualan_februari` (
 -- --------------------------------------------------------
 
 --
--- Stand-in struktur untuk tampilan `penjualan_januari`
--- (Lihat di bawah untuk tampilan aktual)
+-- Stand-in structure for view `penjualan_januari`
+-- (See below for the actual view)
 --
 CREATE TABLE `penjualan_januari` (
 `kode_obat` varchar(10)
@@ -167,8 +177,8 @@ CREATE TABLE `penjualan_januari` (
 -- --------------------------------------------------------
 
 --
--- Stand-in struktur untuk tampilan `penjualan_maret`
--- (Lihat di bawah untuk tampilan aktual)
+-- Stand-in structure for view `penjualan_maret`
+-- (See below for the actual view)
 --
 CREATE TABLE `penjualan_maret` (
 `kode_obat` varchar(10)
@@ -182,7 +192,7 @@ CREATE TABLE `penjualan_maret` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `persediaan`
+-- Table structure for table `persediaan`
 --
 
 CREATE TABLE `persediaan` (
@@ -191,7 +201,7 @@ CREATE TABLE `persediaan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `persediaan`
+-- Dumping data for table `persediaan`
 --
 
 INSERT INTO `persediaan` (`kode_obat`, `jumlah_sedia`) VALUES
@@ -204,7 +214,7 @@ INSERT INTO `persediaan` (`kode_obat`, `jumlah_sedia`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur untuk view `penjualan_februari`
+-- Structure for view `penjualan_februari`
 --
 DROP TABLE IF EXISTS `penjualan_februari`;
 
@@ -213,7 +223,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Struktur untuk view `penjualan_januari`
+-- Structure for view `penjualan_januari`
 --
 DROP TABLE IF EXISTS `penjualan_januari`;
 
@@ -222,7 +232,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Struktur untuk view `penjualan_maret`
+-- Structure for view `penjualan_maret`
 --
 DROP TABLE IF EXISTS `penjualan_maret`;
 
@@ -233,39 +243,72 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 
 --
--- Indeks untuk tabel `is_users`
+-- Indexes for table `is_users`
 --
 ALTER TABLE `is_users`
   ADD PRIMARY KEY (`id_user`),
   ADD KEY `level` (`hak_akses`);
 
 --
--- Indeks untuk tabel `log_obat`
+-- Indexes for table `log_obat`
 --
 ALTER TABLE `log_obat`
   ADD PRIMARY KEY (`kode_obat`);
 
 --
--- Indeks untuk tabel `obat`
+-- Indexes for table `obat`
 --
 ALTER TABLE `obat`
   ADD PRIMARY KEY (`kode_obat`);
 
 --
--- Indeks untuk tabel `persediaan`
+-- Indexes for table `obat_kadaluarsa`
+--
+ALTER TABLE `obat_kadaluarsa`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `persediaan`
 --
 ALTER TABLE `persediaan`
   ADD PRIMARY KEY (`kode_obat`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `is_users`
+-- AUTO_INCREMENT for table `is_users`
 --
 ALTER TABLE `is_users`
   MODIFY `id_user` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `obat_kadaluarsa`
+--
+ALTER TABLE `obat_kadaluarsa`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=575;
+
+DELIMITER $$
+--
+-- Events
+--
+CREATE DEFINER=`root`@`localhost` EVENT `cek_kadaluarsa` ON SCHEDULE EVERY 1 DAY STARTS '2020-12-16 10:54:34' ON COMPLETION PRESERVE ENABLE DO INSERT INTO obat_kadaluarsa(kode_obat)(
+    SELECT
+        kode_obat
+    FROM
+        obat
+    WHERE
+        tgl_kadaluarsa <= CURDATE() AND NOT EXISTS(
+        SELECT
+            *
+        FROM
+            obat_kadaluarsa
+        WHERE
+            kode_obat = obat.kode_obat
+    ))$$
+
+DELIMITER ;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
