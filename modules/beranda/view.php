@@ -143,53 +143,5 @@
           ?>
         </div>
       </div><!-- ./col -->
-
-      <div class="col-lg-3 col-xs-6">
-        <!-- small box -->
-        <div style="background-color:#f39c12;color:#fff" class="small-box">
-          <div class="inner">
-
-            <?php  
-            // fungsi query untuk menampilkan data dari tabel obat
-            $query = mysqli_query($mysqli, "SELECT COUNT(kode_obat) as jumlah FROM is_obat")
-                                            or die('Ada kesalahan pada query tampil Data Obat: '.mysqli_error($mysqli));
-
-            // tampilkan data
-            $data = mysqli_fetch_assoc($query);
-            ?>
-
-            <h3><?php echo $data['jumlah']; ?></h3>
-            <p>Laporan Stok Obat</p>
-          </div>
-          <div class="icon">
-            <i class="fa fa-file-text-o"></i>
-          </div>
-          <a href="?module=lap_stok" class="small-box-footer" title="Cetak Laporan" data-toggle="tooltip"><i class="fa fa-print"></i></a>
-        </div>
-      </div><!-- ./col -->
-
-      <div class="col-lg-3 col-xs-6">
-        <!-- small box -->
-        <div style="background-color:#dd4b39;color:#fff" class="small-box">
-          <div class="inner">
-
-            <?php   
-            // fungsi query untuk menampilkan data dari tabel obat masuk
-            $query = mysqli_query($mysqli, "SELECT COUNT(kode_transaksi) as jumlah FROM is_obat_masuk")
-                                            or die('Ada kesalahan pada query tampil Data obat Masuk: '.mysqli_error($mysqli));
-
-            // tampilkan data
-            $data = mysqli_fetch_assoc($query);
-            ?> 
-
-            <h3><?php echo $data['jumlah']; ?></h3>
-            <p>Laporan Obat Masuk</p>
-          </div>
-          <div class="icon">
-            <i class="fa fa-clone"></i>
-          </div>
-          <a href="?module=lap_obat_masuk" class="small-box-footer" title="Cetak Laporan" data-toggle="tooltip"><i class="fa fa-print"></i></a>
-        </div>
-      </div><!-- ./col -->
     </div><!-- /.row -->
   </section><!-- /.content -->

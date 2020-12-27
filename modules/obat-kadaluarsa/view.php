@@ -14,13 +14,14 @@
     <div class="col-md-12">
 
     <?php
-
-if ($_GET['alert'] == 'success') {
-    echo "<div class='alert alert-success alert-dismissable'>
-              <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
-              <h4>  <i class='icon fa fa-check-circle'></i> Sukses!</h4>
-              Data obat kadaluarsa berhasil dihapus.
-            </div>";
+if (isset($_GET['alert'])) {
+  if ($_GET['alert'] == 'success') {
+      echo "<div class='alert alert-success alert-dismissable'>
+                <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
+                <h4>  <i class='icon fa fa-check-circle'></i> Sukses!</h4>
+                Data obat kadaluarsa berhasil dihapus.
+              </div>";
+  }
 }
 ?>
 
