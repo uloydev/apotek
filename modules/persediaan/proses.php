@@ -62,7 +62,7 @@ else {
             $kode_obat = $_GET['id'];
     
             // perintah query untuk menghapus data pada tabel obat
-            $query = mysqli_query($mysqli, "DELETE FROM obat WHERE kode_obat='$kode_obat'")
+            $query = mysqli_query($mysqli, "DELETE FROM persediaan WHERE kode_obat='$kode_obat'")
                                             or die('Ada kesalahan pada query delete : '.mysqli_error($mysqli));
 
             // cek hasil query
