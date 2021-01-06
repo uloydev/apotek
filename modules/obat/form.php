@@ -28,12 +28,12 @@ if ($_GET['form']=='add') { ?>
               <?php  
               // fungsi untuk membuat id transaksi
               $query_id = mysqli_query($mysqli, "SELECT RIGHT(kode_obat,4) as kode FROM obat
-                                                ORDER BY kode_obat DESC LIMIT 1")
+                                                ORDER BY RIGHT(kode_obat,4) DESC LIMIT 1")
                                                 or die('Ada kesalahan pada query tampil kode_obat : '.mysqli_error($mysqli));
 
               $count = mysqli_num_rows($query_id);
 
-              if ($count <> 0) {
+              if ($count > 0) {
                   // mengambil data kode_obat
                   $data_id = mysqli_fetch_assoc($query_id);
                   $kode    = $data_id['kode']+1;
